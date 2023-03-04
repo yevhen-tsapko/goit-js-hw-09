@@ -16,3 +16,17 @@ img {
   display: block;
   max-width: 100%;
 }
+.timer {
+  display: flex;
+}
+.field {
+  padding: 5px 10px 5px 0;
+}
+.value {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  /* padding: 10px auto; */
+  font-size: 25px;
+  font-weight: 500;
+}

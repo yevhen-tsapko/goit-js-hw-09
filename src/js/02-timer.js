@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 
 let selectedDay = 0;
 let timerId = 0;
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -27,20 +28,20 @@ const refs = {
   minutes: document.querySelector('span[data-minutes]'),
   seconds: document.querySelector('span[data-seconds]'),
 };
-refs.startButton.setAttribute('disabled', 'disabled');
-
+// refs.startButton.setAttribute('disabled', 'disabled');
 const fp = flatpickr(refs.datetimePicker, options);
 
 function calcTimeDifference() {
-  if (selectedDay - Date.now() === 0) {
+  if (selectedDay - Date.now() <= 0) {
     clearInterval(timerId);
+    return 0;
   }
   return selectedDay - Date.now();
 }
 function onTimerButtonClick() {
-  // console.log(selectedDay);
-
-  timerId = setInterval(outputTime(convertMs(calcTimeDifference())), 1000);
+  timerId = setInterval(() => {
+    outputTime(convertMs(calcTimeDifference()));
+  }, 1000);
 }
 
 function outputTime({ days, hours, minutes, seconds }) {
